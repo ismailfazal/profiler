@@ -5,15 +5,15 @@
  * @link http://roots.io/an-introduction-to-the-roots-theme-wrapper/
  * @link http://scribu.net/wordpress/theme-wrappers.html
  */
-function roots_template_path() {
-  return Roots_Wrapping::$main_template;
+function ismail_template_path() {
+  return ismail_Wrapping::$main_template;
 }
 
-function roots_sidebar_path() {
-  return new Roots_Wrapping('templates/sidebar.php');
+function ismail_sidebar_path() {
+  return new ismail_Wrapping('templates/sidebar.php');
 }
 
-class Roots_Wrapping {
+class ismail_Wrapping {
   // Stores the full path to the main template file
   static $main_template;
 
@@ -31,7 +31,7 @@ class Roots_Wrapping {
   }
 
   public function __toString() {
-    $this->templates = apply_filters('roots_wrap_' . $this->slug, $this->templates);
+    $this->templates = apply_filters('ismail_wrap_' . $this->slug, $this->templates);
     return locate_template($this->templates);
   }
 
@@ -43,7 +43,7 @@ class Roots_Wrapping {
       self::$base = false;
     }
 
-    return new Roots_Wrapping();
+    return new ismail_Wrapping();
   }
 }
-add_filter('template_include', array('Roots_Wrapping', 'wrap'), 99);
+add_filter('template_include', array('ismail_Wrapping', 'wrap'), 99);

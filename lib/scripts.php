@@ -9,8 +9,9 @@
  * 1. jquery-1.11.0.min.js via Google CDN
  * 2. all other js called in a single file using jsdelivr, comma separated, with auto update recent version of projects
  */
-function roots_scripts() {
-  wp_enqueue_style('roots_css', '//cdn.jsdelivr.net/g/bootstrap(css/bootstrap.min.css)', false, null);
+function ismail_scripts() {
+  // calling bootstrap, font-awesome
+  wp_enqueue_style('ismail_css', '//cdn.jsdelivr.net/g/bootstrap(css/bootstrap.min.css),fontawesome(css/font-awesome.min.css)', false, null);
 
   // jQuery is loaded using the same method from HTML5 Boilerplate:
   // Grab Google CDN's latest jQuery with a protocol relative URL
@@ -25,13 +26,13 @@ function roots_scripts() {
   }
 
   // calling bootstrap, modernizr in a single request
-  wp_register_script('roots_scripts', '//cdn.jsdelivr.net/g/bootstrap,modernizr', array(), null, true);
+  wp_register_script('ismail_scripts', '//cdn.jsdelivr.net/g/bootstrap,modernizr', array(), null, true);
   wp_enqueue_script('jquery');
-  wp_enqueue_script('roots_scripts');
+  wp_enqueue_script('ismail_scripts');
 }
-add_action('wp_enqueue_scripts', 'roots_scripts', 100);
+add_action('wp_enqueue_scripts', 'ismail_scripts', 100);
 
-function roots_google_analytics() { ?>
+function ismail_google_analytics() { ?>
 <script>
   (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
   function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
@@ -43,5 +44,5 @@ function roots_google_analytics() { ?>
 
 <?php }
 if (GOOGLE_ANALYTICS_ID && !current_user_can('manage_options')) {
-  add_action('wp_footer', 'roots_google_analytics', 20);
+  add_action('wp_footer', 'ismail_google_analytics', 20);
 }

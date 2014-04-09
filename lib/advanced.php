@@ -3,7 +3,7 @@
  * Advanced functions
  */
  
-function roots_rewrites() {
+function ismail_rewrites() {
   /**
    * Define helper constants
    */
@@ -25,17 +25,17 @@ function roots_rewrites() {
    *
    * If you aren't using Apache, Nginx configuration settings can be found in the README
    */
-  function roots_add_rewrites($content) {
+  function ismail_add_rewrites($content) {
     global $wp_rewrite;
-    $roots_new_non_wp_rules = array(
+    $ismail_new_non_wp_rules = array(
       'assets/(.*)'          => THEME_PATH . '/assets/$1',
       'resources/(.*)'         => RELATIVE_PLUGIN_PATH . '/$1'
     );
-    $wp_rewrite->non_wp_rules = array_merge($wp_rewrite->non_wp_rules, $roots_new_non_wp_rules);
+    $wp_rewrite->non_wp_rules = array_merge($wp_rewrite->non_wp_rules, $ismail_new_non_wp_rules);
     return $content;
   }
 
-  function roots_clean_urls($content) {
+  function ismail_clean_urls($content) {
     if (strpos($content, RELATIVE_PLUGIN_PATH) > 0) {
       return str_replace('/' . RELATIVE_PLUGIN_PATH,  '/resources', $content);
     } else {
@@ -44,7 +44,7 @@ function roots_rewrites() {
   }
 
   if (!is_multisite() && !is_child_theme()) {
-    add_action('generate_rewrite_rules', 'roots_add_rewrites');
+    add_action('generate_rewrite_rules', 'ismail_add_rewrites');
 
     if (!is_admin()) {
       $tags = array(
@@ -56,11 +56,11 @@ function roots_rewrites() {
         'style_loader_src'
       );
 
-      add_filters($tags, 'roots_clean_urls');
+      add_filters($tags, 'ismail_clean_urls');
     }
   }
 }
-add_action('after_setup_theme', 'roots_rewrites'); 
+add_action('after_setup_theme', 'ismail_rewrites'); 
  
 // remove wp version param from any enqueued scripts
 function vc_remove_wp_ver_css_js( $src ) {
